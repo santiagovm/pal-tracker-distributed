@@ -1,0 +1,41 @@
+pal-tracker-distributed curl commands for testing
+
+Users
+=====
+
+curl -i -XPOST -H"Content-Type: application/json" localhost:8083/registration -d'{"name": "Pete"}'
+
+curl -i localhost:8083/users/${USER_ID}
+
+Accounts
+========
+
+curl -i localhost:8083/accounts?ownerId=${USER_ID}
+
+Projects
+========
+
+curl -i -XPOST -H"Content-Type: application/json" localhost:8083/projects -d"{\"name\": \"Basket Weaving\", \"accountId\": ${ACCOUNT_ID}}"
+
+curl -i localhost:8083/projects?accountId=${ACCOUNT_ID}
+
+Allocations
+===========
+
+curl -i -XPOST -H"Content-Type: application/json" localhost:8081/allocations -d"{\"projectId\": ${PROJECT_ID}, \"userId\": ${USER_ID}, \"firstDay\": \"2015-05-17\", \"lastDay\": \"2015-05-18\"}"
+
+curl -i localhost:8081/allocations?projectId=${PROJECT_ID}
+
+Stories
+=======
+
+curl -i -XPOST -H"Content-Type: application/json" localhost:8082/stories -d"{\"projectId\": ${PROJECT_ID}, \"name\": \"Find some reeds\"}"
+
+curl -i localhost:8082/stories?projectId=${PROJECT_ID}
+
+Time Entries
+============
+
+curl -i -XPOST -H"Content-Type: application/json" localhost:8084/time-entries/ -d"{\"projectId\": ${PROJECT_ID}, \"userId\": ${USER_ID}, \"date\": \"2015-05-17\", \"hours\": 6}"
+
+curl -i localhost:8084/time-entries?userId=${USER_ID}
