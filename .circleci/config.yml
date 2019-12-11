@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:jdk
+      - image: circleci/buildpack-deps:trusty
     steps:
       - checkout
       - run:
