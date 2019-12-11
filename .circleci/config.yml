@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  migrate:
+  build:
     docker:
       - image: circleci/buildpack-deps:trusty
     steps:
@@ -14,4 +14,3 @@ jobs:
           command: |
             cf login -a $CF_API_URL -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORG -s $CF_SPACE
             ./gradlew cfMigrate
-            
