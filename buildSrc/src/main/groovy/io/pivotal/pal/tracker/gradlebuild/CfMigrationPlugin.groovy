@@ -33,6 +33,7 @@ class CfMigrationPlugin implements Plugin<Project> {
                     dependsOn "acquireCredentials"
                     doLast {
                         println "Opening Tunnel for $appName"
+                        println "cf ssh -N -L ${TUNNEL_PORT}:${credentials['hostname']}:${credentials['port']} $appName"
                         Thread.start {
                             tunnelProcess = "cf ssh -N -L ${TUNNEL_PORT}:${credentials['hostname']}:${credentials['port']} $appName".execute()
                         }
