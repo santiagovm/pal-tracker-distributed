@@ -5,6 +5,7 @@ notifications:
 env:
   - RELEASE_TAG="release-$TRAVIS_BUILD_NUMBER"
 stages:
+# santi: put this back
 #  - build and publish
 #  - deploy
   - migrate
