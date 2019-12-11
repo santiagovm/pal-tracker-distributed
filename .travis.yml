@@ -6,7 +6,9 @@ env:
   - RELEASE_TAG="release-$TRAVIS_BUILD_NUMBER"
 stages:
   - build and publish
+    if: 1 = 2
   - deploy
+    if: 1 = 2
   - migrate
 if: tag IS blank
 
@@ -112,6 +114,7 @@ jobs:
         password: $CF_PASSWORD
         organization: $CF_ORG
         space: $CF_SPACE
+
     - stage: deploy
       name: backlog
       language: bash
@@ -123,6 +126,7 @@ jobs:
         - echo "Deploying backlog server $RELEASE_TAG"
       deploy:
         <<: *cloudfoundry
+
     - stage: deploy
       name: registration
       language: bash
@@ -134,6 +138,7 @@ jobs:
         - echo "Deploying registration server $RELEASE_TAG"
       deploy:
         <<: *cloudfoundry
+
     - stage: deploy
       name: timesheets
       language: bash
@@ -145,6 +150,7 @@ jobs:
         - echo "Deploying timesheets server $RELEASE_TAG"
       deploy:
         <<: *cloudfoundry
+
     - stage: migrate
       language: java
       before_install:
