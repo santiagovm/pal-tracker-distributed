@@ -8,8 +8,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 class CfMigrationPlugin implements Plugin<Project> {
-//    private final static int TUNNEL_PORT = 63306
-    private final static int TUNNEL_PORT = 53306
+    private final static int TUNNEL_PORT = 63306
     private static final String KEY_NAME = 'flyway-migration-key'
 
     @Override
@@ -35,6 +34,7 @@ class CfMigrationPlugin implements Plugin<Project> {
                     doLast {
                         println "Opening Tunnel for $appName"
                         println "cf ssh -N -L ${TUNNEL_PORT}:${credentials['hostname']}:${credentials['port']} $appName"
+
                         Thread.start {
                             tunnelProcess = "cf ssh -N -L ${TUNNEL_PORT}:${credentials['hostname']}:${credentials['port']} $appName".execute()
                         }
