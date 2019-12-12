@@ -7,7 +7,7 @@ env:
 stages:
   - build and publish
   - deploy
-#  - migrate
+  - migrate
 if: tag IS blank
 
 jobs:
@@ -149,13 +149,13 @@ jobs:
       deploy:
         <<: *cloudfoundry
 
-#    - stage: migrate
-#      language: java
-#      before_install:
-#        - wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
-#        - echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-#        - sudo apt-get update
-#        - sudo apt-get install cf-cli
-#      script:
-#        - cf login -a $CF_API_URL -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORG -s $CF_SPACE
-#        - ./gradlew cfMigrate
+    - stage: migrate
+      language: java
+      before_install:
+        - wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+        - echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+        - sudo apt-get update
+        - sudo apt-get install cf-cli
+      script:
+        - cf login -a $CF_API_URL -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORG -s $CF_SPACE
+        - ./gradlew cfMigrate
