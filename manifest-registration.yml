@@ -2,7 +2,7 @@ applications:
 - name: tracker-registration
   path: ./applications/registration-server/build/libs/registration-server.jar
   routes:
-  - route: registration-pal-santiago-vasquez.apps.pcfone.io
+  - route: registration-pal-santiago-vasquez.cfapps.io
   memory: 1G
   instances: 1
   env:
