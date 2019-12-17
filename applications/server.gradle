@@ -13,6 +13,7 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.boot:spring-boot-starter-actuator"
     compile "io.pivotal.spring.cloud:spring-cloud-services-starter-service-registry"
+    compile "io.pivotal.spring.cloud:spring-cloud-services-starter-config-client"
 
     // Bring in support for legacy OAuth autoconfiguration
     // See https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#oauth2
@@ -30,5 +31,10 @@ bootRun.environment([
         "APPLICATION_OAUTH_ENABLED": true,
         "SECURITY_OAUTH2_CLIENT_CLIENT_ID": "tracker-client",
         "SECURITY_OAUTH2_CLIENT_CLIENT_SECRET": "supersecret",
-        "EUREKA_CLIENT_OAUTH2_CLIENTID": "eureka-client"
+        "EUREKA_CLIENT_OAUTH2_CLIENTID": "eureka-client",
+        "REGISTRATION_SERVER_ENDPOINT": "http://registration-server",
+])
+
+test.environment([
+        "REGISTRATION_SERVER_ENDPOINT": "http://registration-server",
 ])
